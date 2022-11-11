@@ -11,7 +11,7 @@ function App() {
     const checkLogin = async () =>{
       const token = localStorage.getItem('tokenStore')
       if(token){
-        const verified = await axios.get('/users/verify',{
+        const verified = await axios.get('https://bknd.onrender.com/users/verify',{
           headers:{ Authorization: token}
         })
         console.log(verified)
