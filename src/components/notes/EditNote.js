@@ -16,7 +16,7 @@ export default function EditNote({match}) {
         const getNote = async () =>{
             const token = localStorage.getItem('tokenStore')
             if(id){
-                const res = await axios.get(`/api/notes/${id}`, {
+                const res = await axios.get(`https://bknd.onrender.com/api/notes/${id}`, {
                     headers: {Authorization: token}
                 })
                 setNote({
@@ -46,7 +46,7 @@ export default function EditNote({match}) {
                     title, content, date
                 }
 
-                await axios.put(`/api/notes/${id}`, newNote, {
+                await axios.put(`https://bknd.onrender.com/api/notes/${id}`, newNote, {
                     headers: {Authorization: token}
                 })
                 
