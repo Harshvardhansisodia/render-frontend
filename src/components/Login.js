@@ -1,5 +1,7 @@
-import React, {useState} from 'react'
+import React, {useState,useEffect} from 'react'
 import axios from 'axios';
+import Pic from '../../src/logo.jpg'
+import ClipLoader from "react-spinners/ClipLoader";
 
 export default function Login({setIsLogin}) {
     const [user, setUser] = useState({name: '',email: '',password: '' })
@@ -45,9 +47,38 @@ export default function Login({setIsLogin}) {
         visibility: onLogin ? "visible" : "hidden",
         opacity: onLogin ? 1 : 0
     }
+    const [loading, setLoading] = useState(false);
+    useEffect(() => {
+        setLoading(true)
+        setTimeout(
+            () => {
+                setLoading(false)
+            },
+     3000)
 
+    }, [])
     return (
-       <section className="login-page">
+        
+        <div className="login-page">
+        {
+           
+           loading ?
+
+           <ClipLoader
+           color={'black'}
+           loading={loading}
+           className='loading'
+           // cssOverride={override}
+           size={150}
+           aria-label="Loading Spinner"
+           data-testid="loader"
+       />
+
+            :
+            <div className="login-page">
+        <div>
+            <img src={Pic} alt='' className='photoo'></img>
+        </div>
            <div className="login create-note">
                 <h2>Login</h2>
                 <form onSubmit={loginSubmit}>
@@ -89,6 +120,9 @@ export default function Login({setIsLogin}) {
                     <h3>{err}</h3>
                 </form>
            </div>
-       </section>
+       </div>
+        }
+        </div>
+       
     )
 }
